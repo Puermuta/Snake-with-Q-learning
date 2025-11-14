@@ -15,5 +15,12 @@ A future web tool for playing around with Q-learning using the game snake.
    - Handles input from frontend of course
    - Probably flask, because the model is in python
 
+## Order, more or less
+For each feature I add:
+Frontend
+Backend
+
+profit
+
  ## Notes
  Make no mistakes 🔥
