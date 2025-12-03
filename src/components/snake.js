@@ -1,3 +1,35 @@
+/**
+ * Represents a Snake entity in a grid-based Snake game.
+ *
+ * This class handles:
+ *  - Maintaining the snake's body segments
+ *  - Movement and direction changes
+ *  - Collision detection (walls + self)
+ *  - Eating fruit and growing
+ *  - Scoring
+ *  - Requesting fruit generation from the Grid
+ *  - Rendering its initial state onto the Grid
+ *
+ * The Snake operates on a provided Grid instance, which must expose:
+ *  - rows, cols
+ *  - reset()
+ *  - setCell(r, c, value)
+ *  - getCellValue(r, c)
+ *  - a 2D array at Grid.grid (string values)
+ *
+ * Public Methods:
+ *  - move() → Moves the snake one step forward.
+ *  - changeDirection(dir) → Updates movement direction, unless reversing.
+ *  - reset() → Resets snake position, score, direction, and re-renders.
+ *
+ * Private Methods (internal use only):
+ *  - _renderInitial() → Draws starting body + fruit onto grid.
+ *  - _checkFruit(newHead) → Returns true if snake eats fruit.
+ *  - _generateFruit(n) → Places n fruits in random empty cells.
+ *  - _checkDeath(newHead) → Returns true if new head collides or exits bounds.
+ *
+ * @class
+ */
 export default class Snake {
     constructor(grid) {
         this.Grid = grid;
@@ -115,5 +147,4 @@ export default class Snake {
             this.Grid.getCellValue(newHead.r, newHead.c) == "snake"
         )
     }
-
 }
