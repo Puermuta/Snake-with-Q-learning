@@ -10,7 +10,32 @@
 <body>
     <div class = "grid-container">
         <div class="parameters-container">
-        
+            <!--
+            Sliders and input fields:
+                Simulation speed
+                Simulation count
+                Number of fruits
+                Walls or wrap around mode
+                Random starting posion, or specific
+                    Also direction
+                Dynamic board
+                    Fruits disappear, maybe negative reward for lost fruit?
+                    Fruits move
+                Board size
+                Alpha // learning rate
+                    Alpha decay rate
+                    Alpha decay max and min
+                Gamma // Discount factor
+                Epsilon // Policy function
+                    Epsilon decay rate
+                    Epsilon decay maximum and minimum
+                Rewards, be able to change all kinds of rewards.
+                ...more? might add and remove some.
+            -->
+            <div class="slidecontainer">
+                
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            </div>
         </div>
         <div class="snake-container">
             <div class = "snake-game" id = "snake_game"></div>
@@ -20,6 +45,5 @@
         
         </div>
     </div>
-    
 </body>
 </html>

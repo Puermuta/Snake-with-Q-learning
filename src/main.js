@@ -11,12 +11,12 @@ let directions = {
     1: { r: 1, c: 0 },
     2: { r: 0, c: 1 },
     3: { r: -1, c: 0 },
-    4: {r: 0, c: -1},
+    4: { r: 0, c: -1},
 }
 
 while (true) {
     snake.move();
-    await delay(200);
+    await delay(300);
     let choice = directions[Math.floor(Math.random() * 4 + 1)]
     if (Math.random() < 0.75) {
         snake.changeDirection(choice)
