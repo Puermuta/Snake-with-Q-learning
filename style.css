@@ -1,0 +1,90 @@
+:root {
+    /* https://colorhunt.co/palette/f259125c3e94412b6b211832 */
+    --primary-bg-color: #211832;
+    --primary-color: #412B6B;
+    --secondary-color: #5C3E94;
+    --accent-color: #F25912;
+    --accent-color-2: #F2D012;
+}
+
+* {
+    /*outline: red 1px dashed; /* debugging */
+}
+
+html {
+    
+    background: var(--primary-bg-color);
+
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-container {
+    display: grid;
+    margin: 6rem;
+    width: auto;
+    grid-template-areas: 
+        'params snake'
+        'data   data';
+}
+
+.parameters-container {
+    grid-area: params;
+    height: 50rem;
+    width: 50rem;
+    outline: green 1px dotted;
+}
+
+.snake-container {
+    grid-area: snake;
+    height: 40rem;
+    width: 40rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.snake-game{
+    width: 80%;
+    height: 80%;
+
+    background: var(--primary-color);
+    border-radius: 1.5rem;
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    padding: 1rem;
+}
+
+.snake-game > .cell {
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0.3rem;
+    border-radius: 0.65rem;
+    background: var(--secondary-color);
+}
+
+.snake-game > .snake {
+    background: var(--accent-color);
+}
+
+.snake-game > .fruit {
+    background: var(--accent-color-2)
+}
+
+
+.data-container {
+    grid-area: data;
+    height: 50rem;
+    width: 100rem;
+}
