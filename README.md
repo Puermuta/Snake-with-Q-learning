@@ -1,5 +1,6 @@
 # Snake-with-Q-learning
 A future web tool for playing around with Q-learning using the game snake.
+Preview of current status is found at [snake.aas.land](https://snake.aas.land)
 
 ## Game plan, not in order:
 - Implement model framework
