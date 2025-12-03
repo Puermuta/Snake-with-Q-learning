@@ -1,5 +1,4 @@
 export default class Snake {
-    fruitTimer = 4;
     constructor(grid) {
         this.Grid = grid;
         this.score = 0;
