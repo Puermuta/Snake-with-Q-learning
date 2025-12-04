@@ -12,19 +12,19 @@
         <div class="parameters-container">
             <!--
             Sliders and input fields:
-                Simulation speed
-                Simulation count
-                Number of fruits
-                Walls or wrap around mode
-                Random starting posion, or specific
-                    Also direction
-                Dynamic board
-                    Fruits disappear, maybe negative reward for lost fruit?
-                    Fruits move
-                Board size
+                Sim controls: start, pause, restart, reset (critical).
+                Game settings:
+                    Simulation speed - slider
+                    Number of fruits - input field with increment, max val
+                    Random starting posion, or specific
+                    Walls or wrap around mode
+                    Dynamic board
+                        Fruits disappear, maybe negative reward for lost fruit?
+                        Fruits move?
+                
                 Alpha // learning rate
                     Alpha decay rate
-                    Alpha decay max and min
+                    Alpha decay max and minspoti
                 Gamma // Discount factor
                 Epsilon // Policy function
                     Epsilon decay rate
@@ -32,10 +32,11 @@
                 Rewards, be able to change all kinds of rewards.
                 ...more? might add and remove some.
             -->
-            <div class="slidecontainer">
-                
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            </div>
+            <input type="range" min="1" max="100" value="50" class="slider">
+            <button>Start</button>
+            <button class = 'critical'>Reset</button>
+            <input type="text" class="text">
+            <input type="checkbox" class="checkbox">
         </div>
         <div class="snake-container">
             <div class = "snake-game" id = "snake_game"></div>

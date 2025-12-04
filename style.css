@@ -1,3 +1,5 @@
+@import './_fonts.css';
+
 :root {
     /* https://colorhunt.co/palette/f259125c3e94412b6b211832 */
     --primary-bg-color: #211832;
@@ -5,19 +7,24 @@
     --secondary-color: #5C3E94;
     --accent-color: #F25912;
     --accent-color-2: #F2D012;
+    --cream: #FAF8F0;
+    
+    --font-primary: 'Roboto Mono', monospace;
 }
 
 * {
     /*outline: red 1px dashed; /* debugging */
+    font-family: var(--font-primary);
 }
 
 html {
-    
     background: var(--primary-bg-color);
 
     margin: 0;
     padding: 0;
     height: 100%;
+
+    font-size: 12px;
 }
 
 body {
@@ -37,10 +44,90 @@ body {
 }
 
 .parameters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
     grid-area: params;
-    height: 50rem;
-    width: 50rem;
+    height: 40rem;
+    width: 40rem;
     outline: green 1px dotted;
+}
+
+.slider {
+    width: 40%;
+    height: 0.75rem;
+    background: var(--primary-color);
+    border-radius: 1000px;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    border: none;
+    cursor: pointer;
+}
+
+.parameters-container > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 10%; /* for designing as of now */
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    
+    background: var(--secondary-color);
+    color: var(--cream);
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+}
+
+.parameters-container > button.critical {
+    background: var(--accent-color);
+}
+
+button:hover {
+    transform: translate(0.05rem, 0.05rem);
+    cursor: pointer;
+}
+
+.parameters-container > input.text {
+    width: 20%;
+
+    box-sizing: border-box;
+    background: var(--secondary-color);
+    border: 0.2rem solid var(--primary-color);
+    outline: none;
+    color: var(--cream);
+
+    border-radius: 0.5rem;
+}
+
+.parameters-container > input.checkbox {
+    height: 1.5rem;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .snake-container {
