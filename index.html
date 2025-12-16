@@ -32,6 +32,64 @@
                 Rewards, be able to change all kinds of rewards.
                 ...more? might add and remove some.
             -->
+            
+            <div class = "category">
+                <label>Sim controls</label>
+                <div class = "button-row">
+                    <button>Start</button> <!-- Also pause when pressed! -->
+                    <button class = 'critical'>Stop</button>
+                    <button class = 'important'>Restart</button>
+                </div>
+            </div>
+            <div class="category">
+                <label>Game settings</label>
+                <div class="controls space-between">
+                    <label class="control-label">Sim speed: <b><span id="sim-speed">12</span></b> episodes/sec</label>
+                    <div class = "slider-container">
+                        <label>1</label>
+                        <input type="range" min="1" max="20" value="12" class="slider">
+                        <label>20</label>
+                    </div>
+                </div>
+                <div class="controls space-between">
+                    <label class="control-label">Fruit count: <b><span id="fruit-count">2</span></b> total</label>
+                    <div class="slider-container">
+                        <label>1</label>
+                        <input type="range" min="1" max="12" value="1" class="slider">
+                        <label>12</label>
+                    </div>
+                </div>
+                <div class="controls space-between">
+                    <!-- Would be cool to add possibility to just select cell to start from using
+                     the cursor.-->
+                    <label class="control-label">Starting position: <b><span id="starting-position">Random</span></b></label> 
+                    <div class = "button-row">
+                        <button>Random</button>
+                        <button class = 'inactive'>Custom</button>
+                    </div>
+                </div>
+                <div class="controls space-between">
+                    <!-- Would be cool to add possibility to just select cell to start from using
+                                     the cursor.-->
+                    <label class="control-label">Board mode: <b><span id="border-mode">Wrap-around</span></b></label>
+                    <div class="button-row">
+                        <button class='inactive'>Solid</button>
+                        <button>Wrap-around</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <label>Hyperparameters</label>
+                <div class="controls space-between">
+                    <label class="control-label">Learning rate <b>α</b>:</label>
+                    <div class="slider-container">
+                        <label>1</label>
+                        <input type="range" min="0.01" max="0." value="12" class="slider">
+                        <label></label>
+                    </div>
+                </div>
+            </div>
             <input type="range" min="1" max="100" value="50" class="slider">
             <button>Start</button>
             <button class = 'critical'>Reset</button>

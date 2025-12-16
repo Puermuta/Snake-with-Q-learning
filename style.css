@@ -8,6 +8,7 @@
     --accent-color: #F25912;
     --accent-color-2: #F2D012;
     --cream: #FAF8F0;
+    --dark-cream: #e8e2dc;
     
     --font-primary: 'Roboto Mono', monospace;
 }
@@ -15,6 +16,7 @@
 * {
     /*outline: red 1px dashed; /* debugging */
     font-family: var(--font-primary);
+    color: var(--cream);
 }
 
 html {
@@ -25,7 +27,7 @@ html {
     height: 100%;
     overflow-x: hidden;
 
-    font-size: clamp(12px, 0.8vw, 16px);
+    font-size: clamp(12px, 0.67vw, 24px);
 }
 
 body {
@@ -37,7 +39,7 @@ body {
 
 .grid-container {
     display: grid;
-    margin: 6rem;
+    margin: 12rem;
     width: auto;
     grid-template-areas: 
         'params snake'
@@ -47,16 +49,58 @@ body {
 .parameters-container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+    padding: 10%;
 
     grid-area: params;
     height: 40rem;
     width: 40rem;
-    outline: green 1px dotted;
+}
+
+.parameters-container > .category {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.parameters-container > .category > label {
+    color: var(--dark-cream);
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.parameters-container > .category > .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 1.6rem;
+}
+
+.control-label {
+    font-size: 1.1rem;
+}
+
+.button-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 18rem;
+
+    font-style: italic;
 }
 
 .slider {
-    width: 40%;
+    width: 100%;
     height: 0.75rem;
     background: var(--primary-color);
     border-radius: 1000px;
@@ -85,26 +129,36 @@ body {
     cursor: pointer;
 }
 
-.parameters-container > button {
+button {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 10%; /* for designing as of now */
-    height: 2rem;
+   
+    height: 2.4rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: none;
     
     background: var(--secondary-color);
     color: var(--cream);
-    font-weight: 600;
-    font-size: 1rem;
+    text-shadow:
+            0 1px 1px rgba(0, 0, 0, 0.1),
+            0 2px 2px rgba(0, 0, 0, 0.05);
+    font-weight: 700;
+    font-size: 1.05rem;
     font-family: var(--font-primary);
 }
 
-.parameters-container > button.critical {
+button.important {
+    background: var(--accent-color-2);
+}
+
+button.critical {
     background: var(--accent-color);
+}
+
+button.inactive {
+    background: var(--primary-color);
 }
 
 button:hover {
@@ -112,19 +166,22 @@ button:hover {
     cursor: pointer;
 }
 
-.parameters-container > input.text {
+input.text {
+    height: 2rem;
     width: 20%;
 
     box-sizing: border-box;
-    background: var(--secondary-color);
     border: 0.2rem solid var(--primary-color);
-    outline: none;
-    color: var(--cream);
-
     border-radius: 0.5rem;
+    outline: none;
+
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cream);
+    background: var(--secondary-color);    
 }
 
-.parameters-container > input.checkbox {
+input.checkbox {
     height: 1.5rem;
     position: absolute;
     opacity: 0;
@@ -135,6 +192,7 @@ button:hover {
     grid-area: snake;
     height: 40rem;
     width: 40rem;
+    padding: 10%;
 
     display: flex;
     align-items: center;
@@ -142,8 +200,8 @@ button:hover {
 }
 
 .snake-game{
-    width: 80%;
-    height: 80%;
+    height: 100%;
+    width: 100%;
 
     background: var(--primary-color);
     border-radius: 1.5rem;
@@ -175,4 +233,8 @@ button:hover {
     grid-area: data;
     height: 50rem;
     width: 100rem;
+}
+
+.space-between {
+    justify-content: space-between;
 }
