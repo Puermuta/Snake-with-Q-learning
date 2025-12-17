@@ -63,8 +63,9 @@
                      the cursor.-->
                     <label class="control-label">Starting position: <b><span id="starting-position">Random</span></b></label> 
                     <div class = "row">
-                        <button>Random</button>
-                        <button class = 'inactive'>Custom</button>
+                        <button id = "pos-standard">Standard</button>
+                        <button id = "pos-random" class = 'inactive'>Random</button>
+                        <button id = "pos-custom" class = 'inactive'>Custom</button>
                     </div>
                 </div>
                 <div class="controls space-between">
@@ -109,15 +110,15 @@
                 <div class = "space-between row">
                     <div>
                         <label>Eating fruit: </label>
-                        <input type = "text" class = "text" maxlength="5">
+                        <input type = "text" class = "text" maxlength="5" value = '10'>
                     </div>
                     <div>
                         <label>Dying: </label>
-                        <input type="text" class="text" maxlength="5">
+                        <input type="text" class="text" maxlength="5" value = '-100'>
                     </div>
                     <div>
                         <label>Movement: </label>
-                        <input type="text" class="text" maxlength="5">
+                        <input type="text" class="text" maxlength="5" value = "-1">
                     </div>
                 </div>
             </div>

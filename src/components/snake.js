@@ -35,6 +35,7 @@ export default class Snake {
         this.Grid = grid;
         this.score = 0;
         this.direction = { r: 1, c: 0 };
+        this.fruitCount = 5
         this.body = [{
             r: 2,
             c: 1
@@ -53,7 +54,7 @@ export default class Snake {
 
     _renderInitial() {
         this.Grid.reset();
-        this._generateFruit(5);
+        this._generateFruit(this.fruitCount);
         this.body.forEach(cell => {
             this.Grid.setCell(cell.r, cell.c, "snake");
         })

@@ -14,19 +14,31 @@ let directions = {
     4: { r: 0, c: -1},
 }
 
+// Functions
+
 let active = false;
 function startGame() {
     active = true;
 }
 
-function pauseGame() { }
+//function pauseGame() { }
+
 function stopGame() { 
     active = false;
 }
 function restartGame() {
     snake.reset()
     active = true;
- }
+}
+ 
+function setPosition(position) {
+    //switch (position) {
+//        case "standard":
+            
+    //}
+}
+
+// Buttons
 
 const start = document.getElementById("start");
 //const pause = document.getElementById("pause");
@@ -38,13 +50,25 @@ start.addEventListener("click", startGame);
 stop.addEventListener("click", stopGame);
 restart.addEventListener("click", restartGame);
 
+const posStandard = document.getElementById("pos-standard");
+const posRandom = document.getElementById("pos-random");
+const posCustom = document.getElementById("pos-custom");
+
+posStandard.addEventListener("click", setPosition("standard"));
+posRandom.addEventListener("click", setPosition("random"));
+posCustom.addEventListener("click", setPosition("custom"));
+
 const simSpeed = document.getElementById("sim-speed");
 const simSpeedLabel = document.getElementById("sim-speed-label")
 simSpeed.addEventListener("input", () => { simSpeedLabel.textContent = simSpeed.value; });
 
 const fruitCount = document.getElementById("fruit-count");
 const fruitCountLabel = document.getElementById("fruit-count-label")
-fruitCount.addEventListener("input", () => { fruitCountLabel.textContent = fruitCount.value; });
+fruitCount.addEventListener("input", () => {
+    fruitCountLabel.textContent = fruitCount.value;
+    snake.fruitCount = fruitCount.value;
+    console.log(snake.fruitCount);
+});
 
 const alpha = document.getElementById("alpha");
 const alphaLabel = document.getElementById("alpha-label")
@@ -57,6 +81,8 @@ gamma.addEventListener("input", () => { gammaLabel.textContent = gamma.value / g
 const epsilon = document.getElementById("epsilon");
 const epsilonLabel = document.getElementById("epsilon-label")
 epsilon.addEventListener("input", () => { epsilonLabel.textContent = epsilon.value / epsilon.max; });
+
+
 
 while (true) {
     if (active) {
