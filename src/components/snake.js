@@ -44,7 +44,9 @@ export default class Snake {
         }, {
             r: 2,
             c: 3
-        }];
+            }];
+        
+        this.wrapAround = true;
         
         this._renderInitial();
     }
@@ -59,10 +61,18 @@ export default class Snake {
 
     move() {
         const head = this.body[0]
-        const newHead = {
-            r: head.r + this.direction.r,
-            c: head.c + this.direction.c
+        let newHead = {
+                r: (head.r + this.direction.r),
+                c: (head.c + this.direction.c)
+        };
+        
+        if (this.wrapAround) {
+                newHead = {
+                r: (newHead.r + this.Grid.rows) % this.Grid.rows,
+                c: (newHead.c + this.Grid.cols) % this.Grid.cols
+            }
         }
+        
 
         const dead = this._checkDeath(newHead);
         if (dead) {

@@ -226,7 +226,7 @@ input.text {
 
 .data-container {
     grid-area: data;
-    height: 50rem;
+    height: 0rem;
     width: 100rem;
 }
 

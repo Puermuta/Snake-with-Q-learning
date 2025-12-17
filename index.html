@@ -35,26 +35,26 @@
             
             <div class = "category">
                 <div class = "row">
-                    <button>Start</button> <!-- Also pause when pressed! -->
-                    <button class = 'critical'>Stop</button>
-                    <button class = 'important'>Restart</button>
+                    <button id = "start">Start</button> <!-- Also pause when pressed! -->
+                    <button id = "stop" class = 'critical'>Stop</button>
+                    <button id = "restart" class = 'important'>Restart</button>
                 </div>
             </div>
             <div class = "category">
                 <label>Game settings</label>
                 <div class="controls space-between">
-                    <label class="control-label">Sim speed: <b><span id="sim-speed">12</span></b> episodes/sec</label>
+                    <label class="control-label">Sim speed: <b><span id="sim-speed-label">12</span></b> episodes/sec</label>
                     <div class = "slider-container">
                         <label>1</label>
-                        <input type="range" min="1" max="20" value="12" class="slider">
+                        <input type="range" min="1" max="20" value="12" class="slider" id = "sim-speed">
                         <label>20</label>
                     </div>
                 </div>
                 <div class="controls space-between">
-                    <label class="control-label">Fruit count: <b><span id="fruit-count">2</span></b> total</label>
+                    <label class="control-label">Fruit count: <b><span id="fruit-count-label">2</span></b> total</label>
                     <div class="slider-container">
                         <label>1</label>
-                        <input type="range" min="1" max="12" value="1" class="slider">
+                        <input type="range" min="1" max="12" value="1" class="slider" id = "fruit-count">
                         <label>12</label>
                     </div>
                 </div>
@@ -80,26 +80,26 @@
             <div class = "category">
                 <label>Hyperparameters</label>
                 <div class="controls space-between">
-                    <label class="control-label">Learning rate: <b>α</b> = <b><span id = "alpha">0.2</span></b></label>
+                    <label class="control-label">Learning rate: <b>α</b> = <b><span id = "alpha-label">0.2</span></b></label>
                     <div class="slider-container">
                         <label>0</label>
-                        <input type="range" min="1" max="1000" value="12" class="slider">
+                        <input type="range" min="1" max="100" value="12" class="slider" id = "alpha">
                         <label>1</label>
                     </div>
                 </div>
                 <div class="controls space-between">
-                    <label class="control-label">Discount factor: <b>γ</b> = <b><span id="gamma">0.4</span></b></label>
+                    <label class="control-label">Discount factor: <b>γ</b> = <b><span id="gamma-label">0.4</span></b></label>
                     <div class="slider-container">
                         <label>0</label>
-                        <input type="range" min="1" max="1000" value="12" class="slider">
+                        <input type="range" min="1" max="100" value="12" class="slider" id = "gamma">
                         <label>1</label>
                     </div>
                 </div>
                 <div class="controls space-between">
-                    <label class="control-label">Policy function: <b>ε</b> = <b><span id="epsilon">0.2</span></b></label>
+                    <label class="control-label">Policy function: <b>ε</b> = <b><span id="epsilon-label">0.2</span></b></label>
                     <div class="slider-container">
                         <label>0</label>
-                        <input type="range" min="1" max="1000" value="12" class="slider">
+                        <input type="range" min="1" max="100" value="12" class="slider" id = "epsilon">
                         <label>1</label>
                     </div>
                 </div>
