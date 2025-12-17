@@ -80,7 +80,7 @@ body {
     font-size: 1.1rem;
 }
 
-.button-row {
+.row {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -147,6 +147,8 @@ button {
     font-weight: 700;
     font-size: 1.05rem;
     font-family: var(--font-primary);
+
+    transition: 0.05s;
 }
 
 button.important {
@@ -168,7 +170,7 @@ button:hover {
 
 input.text {
     height: 2rem;
-    width: 20%;
+    width: 4rem;
 
     box-sizing: border-box;
     border: 0.2rem solid var(--primary-color);
@@ -179,13 +181,6 @@ input.text {
     font-weight: 500;
     color: var(--cream);
     background: var(--secondary-color);    
-}
-
-input.checkbox {
-    height: 1.5rem;
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
 }
 
 .snake-container {
