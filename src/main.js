@@ -15,6 +15,22 @@ let directions = {
 }
 
 // Functions
+function createSlider(sliderId, labelId, percentage = false) {
+    const slider = document.getElementById(sliderId);
+    const label = document.getElementById(labelId);
+
+    if (!percentage) {
+        label.textContent = slider.value;
+        slider.addEventListener("input", () => {
+            label.textContent = slider.value;
+        });
+    } else {
+        label.textContent = (slider.value / slider.max).toFixed(2);
+        slider.addEventListener('input', () => {
+            label.textContent = (slider.value / slider.max).toFixed(2);
+        });
+    }
+}
 
 let active = false;
 function startGame() {
@@ -58,40 +74,27 @@ posStandard.addEventListener("click", setPosition("standard"));
 posRandom.addEventListener("click", setPosition("random"));
 posCustom.addEventListener("click", setPosition("custom"));
 
-const simSpeed = document.getElementById("sim-speed");
-const simSpeedLabel = document.getElementById("sim-speed-label")
-simSpeed.addEventListener("input", () => { simSpeedLabel.textContent = simSpeed.value; });
-
 const fruitCount = document.getElementById("fruit-count");
 const fruitCountLabel = document.getElementById("fruit-count-label")
 fruitCount.addEventListener("input", () => {
     fruitCountLabel.textContent = fruitCount.value;
     snake.fruitCount = fruitCount.value;
-    console.log(snake.fruitCount);
 });
 
-const alpha = document.getElementById("alpha");
-const alphaLabel = document.getElementById("alpha-label")
-alpha.addEventListener("input", () => { alphaLabel.textContent = alpha.value / alpha.max; });
+createSlider('sim-speed', 'sim-speed-label');
+createSlider('alpha', 'alpha-label', true);
+createSlider('gamma', 'gamma-label', true);
+createSlider('epsilon', 'epsilon-label', true);
 
-const gamma = document.getElementById("gamma");
-const gammaLabel = document.getElementById("gamma-label")
-gamma.addEventListener("input", () => { gammaLabel.textContent = gamma.value / gamma.max; });
-
-const epsilon = document.getElementById("epsilon");
-const epsilonLabel = document.getElementById("epsilon-label")
-epsilon.addEventListener("input", () => { epsilonLabel.textContent = epsilon.value / epsilon.max; });
-
-
-
+// Main loop
 while (true) {
     if (active) {
         snake.move();
         await delay(1000 / simSpeed.value);
+
+        // Temporary code for demonstration purposes. Will connect to backend later.
         let choice = directions[Math.floor(Math.random() * 4 + 1)]
-        if (Math.random() < 0.75) {
-            snake.changeDirection(choice)
-        }
+        if (Math.random() < 0.75) {snake.changeDirection(choice)}
     } else {
         await delay(100);
     }
