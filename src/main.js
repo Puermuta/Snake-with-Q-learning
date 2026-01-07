@@ -32,6 +32,24 @@ function createSlider(sliderId, labelId, percentage = false) {
     }
 }
 
+function createSelection(spanId, selector, selectedIdx = 0) {
+    const buttons = document.querySelectorAll(selector);
+    const span = document.getElementById(spanId);
+    
+    buttons.forEach((btn, i) => {
+        if (i == selectedIdx) {
+            btn.classList.add('selected');
+            span.textContent = btn.textContent;
+        }
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('selected'));
+
+            btn.classList.add('selected');
+            span.textContent = btn.textContent;
+        })
+    })
+}
+
 let active = false;
 function startGame() {
     active = true;
@@ -66,14 +84,12 @@ start.addEventListener("click", startGame);
 stop.addEventListener("click", stopGame);
 restart.addEventListener("click", restartGame);
 
-const posStandard = document.getElementById("pos-standard");
-const posRandom = document.getElementById("pos-random");
-const posCustom = document.getElementById("pos-custom");
 
+/*
 posStandard.addEventListener("click", setPosition("standard"));
 posRandom.addEventListener("click", setPosition("random"));
 posCustom.addEventListener("click", setPosition("custom"));
-
+*/
 const fruitCount = document.getElementById("fruit-count");
 const fruitCountLabel = document.getElementById("fruit-count-label")
 fruitCount.addEventListener("input", () => {
@@ -81,12 +97,18 @@ fruitCount.addEventListener("input", () => {
     snake.fruitCount = fruitCount.value;
 });
 
+// Selections
+createSelection('starting-position', '.pos-selection', 0);
+createSelection('border-mode', '.bm-selection', 1);
+
+// Sliders
 createSlider('sim-speed', 'sim-speed-label');
 createSlider('alpha', 'alpha-label', true);
 createSlider('gamma', 'gamma-label', true);
 createSlider('epsilon', 'epsilon-label', true);
 
 // Main loop
+let simSpeed = document.getElementById('sim-speed');
 while (true) {
     if (active) {
         snake.move();

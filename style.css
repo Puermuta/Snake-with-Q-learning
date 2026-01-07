@@ -138,7 +138,7 @@ body {
     border-radius: 50%;
 
     background-color: var(--secondary-color);
-    border; none;
+    border: none;
 
     cursor: pointer;
 }
@@ -167,7 +167,8 @@ button {
     border-radius: 0.5rem;
     border: none;
     
-    background: var(--secondary-color);
+    background: var(--primary-color);
+    
     color: var(--cream);
     text-shadow:
             0 1px 1px rgba(0, 0, 0, 0.1),
@@ -187,8 +188,8 @@ button.critical {
     background: var(--accent-color);
 }
 
-button.inactive {
-    background: var(--primary-color);
+button.selected {
+    background: var(--secondary-color);
 }
 
 button:hover {

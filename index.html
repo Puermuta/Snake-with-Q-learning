@@ -35,7 +35,7 @@
             
             <div class = "category">
                 <div class = "row">
-                    <button id = "start" class = "active">Start</button> <!-- Also pause when pressed! -->
+                    <button id = "start" class = "selected">Start</button> <!-- Also pause when pressed! -->
                     <button id = "stop" class = 'critical'>Stop</button>
                     <button id = "restart" class = 'important'>Restart</button>
                 </div>
@@ -63,9 +63,9 @@
                      the cursor.-->
                     <label class="control-label">Starting position: <b><span id="starting-position">Random</span></b></label> 
                     <div class = "row">
-                        <button id = "pos-standard" class = 'active'>Standard</button>
-                        <button id = "pos-random">Random</button>
-                        <button id = "pos-custom">Custom</button>
+                        <button id = "pos-standard" class = 'pos-selection active'>Standard</button>
+                        <button id = "pos-random" class = 'pos-selection'>Random</button>
+                        <button id = "pos-custom" class = 'pos-selection'>Custom</button>
                     </div>
                 </div>
                 <div class="controls space-between">
@@ -73,8 +73,8 @@
                                      the cursor.-->
                     <label class="control-label">Board mode: <b><span id="border-mode">Wrap-around</span></b></label>
                     <div class="row">
-                        <button id = 'bm-solid'>Solid</button>
-                        <button id = 'bm-wrap-around' class = 'active'>Wrap-around</button>
+                        <button id = 'bm-solid' class = 'bm-selection'>Solid</button>
+                        <button id = 'bm-wrap-around' class = 'bm-selection active'>Wrap-around</button>
                     </div>
                 </div>
             </div>
