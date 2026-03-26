@@ -1,0 +1,5 @@
+Finnish upper part with both backend and frontend.
+Do frontend first:
+    Make all buttons work
+    Make all sliders work, especially hyperparameters to backend.
+    Also make fruits dynamically remove or add as the fruit count is changed.

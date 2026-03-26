@@ -31,11 +31,12 @@
  * @class
  */
 export default class Snake {
-    constructor(grid) {
+    constructor(grid, fruitCount) {
         this.Grid = grid;
+        this.fruitCount = fruitCount;
+        this.fruits = Array(grid.rows * grid.cols);
         this.score = 0;
         this.direction = { r: 1, c: 0 };
-        this.fruitCount = 5
         this.body = [{
             r: 2,
             c: 1
@@ -61,6 +62,8 @@ export default class Snake {
     }
 
     move() {
+        this._generateFruit();
+
         const head = this.body[0]
         let newHead = {
                 r: (head.r + this.direction.r),
@@ -104,6 +107,7 @@ export default class Snake {
     reset() {
         this.score = 0
         this.direction = { r: 1, c: 0 }
+        this.fruits = []
         this.body = [{
             r: 2,
             c: 1
@@ -122,31 +126,58 @@ export default class Snake {
         const headCell = this.Grid.getCellValue(newHead.r, newHead.c);
         if (headCell == "fruit") {
             this.score++;
-            this._generateFruit(1);
+            this.fruits[newHead.r * newHead.c + newHead.c] = 0;
             return true;
         }
         return false;
     }
 
-    _generateFruit(n) {
+    _generateFruit() {
         // generate new fruit somewhere
-        let emptyCells = []
-        for (let r = 0; r < this.Grid.rows; r++) {
-            for (let c = 0; c < this.Grid.cols; c++) {
-                if (this.Grid.grid[r][c] == "0") {
-                    emptyCells.push({ r, c });
+        let n = this.fruitCount - this.fruits.reduce((acc, val) => acc + val, 0);
+        
+        if (n < 0) {
+            let fruityCells = []
+            for (let r = 0; r < this.Grid.rows; r++) {
+                for (let c = 0; c < this.Grid.cols; c++) {
+                    if (this.fruits[r * this.Grid.cols + c] == "1") {
+                        fruityCells.push({ r, c });
+                    }
                 }
             }
-        }
-        for (let i = 0; i < n; i++) {
-            if (emptyCells.length != 0) {
-                const randomIndex = Math.floor(Math.random() * emptyCells.length);
-                const { r, c } = emptyCells[randomIndex];
-                this.Grid.setCell(r, c, 'fruit');
+            for (let i = n; i < 0; i++) {
+                console.log(i);
+                if (fruityCells.length != 0) {
+                    const randomIndex = Math.floor(Math.random() * fruityCells.length);
+                    const { r, c } = fruityCells[randomIndex];
+                    this.Grid.setCell(r, c, '0');
+                    this.fruits[r * this.Grid.cols + c] = 0;
 
-                emptyCells.splice(randomIndex, 1);
-            } else {
-                break
+                    fruityCells.splice(randomIndex, 1);
+                } else {
+                    break
+                }
+            }
+        } else if (n > 0) {
+            let emptyCells = []
+            for (let r = 0; r < this.Grid.rows; r++) {
+                for (let c = 0; c < this.Grid.cols; c++) {
+                    if (this.Grid.grid[r][c] == "0") {
+                        emptyCells.push({ r, c });
+                    }
+                }
+            }
+            for (let i = 0; i < n; i++) {
+                if (emptyCells.length != 0) {
+                    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+                    const { r, c } = emptyCells[randomIndex];
+                    this.Grid.setCell(r, c, 'fruit');
+                    this.fruits[r * this.Grid.cols + c] = 1;
+
+                    emptyCells.splice(randomIndex, 1);
+                } else {
+                    break
+                }
             }
         }
     }

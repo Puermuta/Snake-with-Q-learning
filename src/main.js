@@ -2,19 +2,41 @@ import Grid from './components/grid.js';
 import Snake from './components/snake.js';
 import delay from './components/delay.js';
 
-let snake_container = document.getElementById("snake_game");
-let grid = new Grid(10, 10, snake_container);
+// Functions
+function createSlider(sliderId, labelId, percentage = false) {
+    const slider = document.getElementById(sliderId);
+    const label = document.getElementById(labelId);
 
-let snake = new Snake(grid);
-
-let directions = {
-    1: { r: 1, c: 0 },
-    2: { r: 0, c: 1 },
-    3: { r: -1, c: 0 },
-    4: { r: 0, c: -1},
+    if (!percentage) {
+        label.textContent = slider.value;
+        slider.addEventListener("input", () => {
+            label.textContent = slider.value;
+        });
+    } else {
+        label.textContent = (slider.value / slider.max).toFixed(2);
+        slider.addEventListener('input', () => {
+            label.textContent = (slider.value / slider.max).toFixed(2);
+        });
+    }
 }
 
-// Functions
+function createSelection(spanId, selector, selectedIdx = 0) {
+    const buttons = document.querySelectorAll(selector);
+    const span = document.getElementById(spanId);
+    
+    buttons.forEach((btn, i) => {
+        if (i == selectedIdx) {
+            btn.classList.add('selected');
+            span.textContent = btn.textContent;
+        }
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('selected'));
+
+            btn.classList.add('selected');
+            span.textContent = btn.textContent;
+        })
+    })
+}
 
 let active = false;
 function startGame() {
@@ -26,8 +48,12 @@ function startGame() {
 function stopGame() { 
     active = false;
 }
-function restartGame() {
+function resetGame() {
     snake.reset()
+<<<<<<< HEAD
+=======
+    active = false;
+>>>>>>> c18c25b52e7afc9fdd741d27523d7ceded67eebe
 }
  
 function setPosition(position) {
@@ -42,55 +68,59 @@ function setPosition(position) {
 const start = document.getElementById("start");
 //const pause = document.getElementById("pause");
 const stop = document.getElementById("stop");
-const restart = document.getElementById("restart");
+const reset = document.getElementById("reset");
 
 start.addEventListener("click", startGame);
 //pause.addEventListener("click", pauseGame);
 stop.addEventListener("click", stopGame);
-restart.addEventListener("click", restartGame);
+reset.addEventListener("click", resetGame);
 
-const posStandard = document.getElementById("pos-standard");
-const posRandom = document.getElementById("pos-random");
-const posCustom = document.getElementById("pos-custom");
-
+/*
 posStandard.addEventListener("click", setPosition("standard"));
 posRandom.addEventListener("click", setPosition("random"));
 posCustom.addEventListener("click", setPosition("custom"));
+*/
 
-const simSpeed = document.getElementById("sim-speed");
-const simSpeedLabel = document.getElementById("sim-speed-label")
-simSpeed.addEventListener("input", () => { simSpeedLabel.textContent = simSpeed.value; });
+// Selections
+createSelection('starting-position', '.pos-selection', 0);
+createSelection('border-mode', '.bm-selection', 1);
 
-const fruitCount = document.getElementById("fruit-count");
-const fruitCountLabel = document.getElementById("fruit-count-label")
+// Sliders
+createSlider('fruit-count', 'fruit-count-label');
+createSlider('sim-speed', 'sim-speed-label');
+createSlider('alpha', 'alpha-label', true);
+createSlider('gamma', 'gamma-label', true);
+createSlider('epsilon', 'epsilon-label', true);
+
+// Game logic
+const fruitCount = document.getElementById('fruit-count');
+
+let snake_container = document.getElementById("snake_game");
+let grid = new Grid(10, 10, snake_container);
+let snake = new Snake(grid, fruitCount.value);
+
 fruitCount.addEventListener("input", () => {
-    fruitCountLabel.textContent = fruitCount.value;
     snake.fruitCount = fruitCount.value;
-    console.log(snake.fruitCount);
 });
 
-const alpha = document.getElementById("alpha");
-const alphaLabel = document.getElementById("alpha-label")
-alpha.addEventListener("input", () => { alphaLabel.textContent = alpha.value / alpha.max; });
 
-const gamma = document.getElementById("gamma");
-const gammaLabel = document.getElementById("gamma-label")
-gamma.addEventListener("input", () => { gammaLabel.textContent = gamma.value / gamma.max; });
+let directions = {
+    1: { r: 1, c: 0 },
+    2: { r: 0, c: 1 },
+    3: { r: -1, c: 0 },
+    4: { r: 0, c: -1},
+}
 
-const epsilon = document.getElementById("epsilon");
-const epsilonLabel = document.getElementById("epsilon-label")
-epsilon.addEventListener("input", () => { epsilonLabel.textContent = epsilon.value / epsilon.max; });
-
-
-
+// Main loop
+let simSpeed = document.getElementById('sim-speed');
 while (true) {
     if (active) {
         snake.move();
         await delay(1000 / simSpeed.value);
+
+        // Temporary code for demonstration purposes. Will connect to backend later.
         let choice = directions[Math.floor(Math.random() * 4 + 1)]
-        if (Math.random() < 0.75) {
-            snake.changeDirection(choice)
-        }
+        if (Math.random() < 0.75) {snake.changeDirection(choice)}
     } else {
         await delay(100);
     }
