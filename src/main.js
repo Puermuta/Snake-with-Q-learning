@@ -28,7 +28,6 @@ function stopGame() {
 }
 function restartGame() {
     snake.reset()
-    active = true;
 }
  
 function setPosition(position) {
